@@ -18,7 +18,7 @@ localhost_ip = "127.0.0.1"
 localhost_OSC_port = 56567
 localhost_OSC_port_service = 56565
 
-target_ip = '192.168.1.103'
+target_ip = '192.168.1.255'
 target_udp_port = 19997
 
 class Alive_Iterator():
