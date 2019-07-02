@@ -15,8 +15,8 @@ class fx_timeline_c():
     def set_direction(self, direction):
         self.direction = direction & 1
 
-    def new_peak_f(self, peak):
-        self.payload_pix.insert(0, peak.Peak(peak.rgb, peak.red, peak.green, peak.blue))
+    def new_peak_f(self, npeak):
+        self.payload_pix.insert(0, peak.Peak(npeak.rgb, npeak.red, npeak.green, npeak.blue))
 
         self.payload_pix.pop(len(self.payload_pix) - 1)
 
