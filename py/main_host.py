@@ -41,7 +41,7 @@ new_peak_l = Peak(0, 0, 0, 0)
 new_peak_r = Peak(0, 0, 0, 0)
 
 
-zigzagov = 10
+zigzagov = 1
 pix_len = (60*5)
 
 fx_timeline = fx_timeline.fx_timeline_c(pix_len, zigzagov)
@@ -130,7 +130,6 @@ while True:
 
         send_payload = fx_timeline.new_peak_f(new_peak_l)
 
-        client.sendto(bytes(frame_format(send_payload)), (target_ip, target_udp_port))
         client.sendto(bytes(frame_format(send_payload)), (target_ip, target_udp_port))
         client_service.send_message("/alive", iterator256.value_inc())
     time.sleep(0.05)
