@@ -2,7 +2,8 @@ import socket
 import time
 
 
-import peak
+# import peak
+from peak import Peak
 import fx_timeline
 from frame_format import frame_format
 
@@ -36,7 +37,9 @@ g_dc_sub = 4
 new_pix = False
 osc_peak_status = False
 
-new_peak = peak.Peak(0, 0, 0, 0)
+new_peak_l = Peak(0, 0, 0, 0)
+new_peak_r = Peak(0, 0, 0, 0)
+
 
 zigzagov = 10
 pix_len = (60*5)
@@ -50,20 +53,22 @@ client_service = udp_client.SimpleUDPClient(localhost_ip, localhost_OSC_port_ser
 OSC callbacks:
 '''
 
-def print_peak(unused_addr, args, peak, red, green, blue):
+def print_peak(unused_addr, args, peak_l, peak_r, red_l, red_r, green_l, green_r, blue_l, blue_r_):
     # print("[{0}] ~ {1}".format(args[0], peak))
     global osc_peak_status
     if not osc_peak_status:
         osc_peak_status = True
         print("OSC peak got")
-    global new_peak
+    global new_peak_l
+    global new_peak_r
+
     global new_pix
     new_pix = True
 
-    new_peak.rgb = new_peak.byte_normalise(peak - g_dc_sub)
-    new_peak.red = new_peak.byte_normalise(red - g_dc_sub)
-    new_peak.green = new_peak.byte_normalise(green - g_dc_sub)
-    new_peak.blue = new_peak.byte_normalise(blue - g_dc_sub)
+    new_peak_l.rgb = Peak.byte_normalise(peak_l - g_dc_sub)
+    new_peak_l.red = Peak.byte_normalise(red_l - g_dc_sub)
+    new_peak_l.green = Peak.byte_normalise(green_l - g_dc_sub)
+    new_peak_l.blue = Peak.byte_normalise(blue_l - g_dc_sub)
 
 
 
@@ -123,7 +128,7 @@ while True:
     if new_pix:
         new_pix = False
 
-        send_payload = fx_timeline.new_peak_f(new_peak)
+        send_payload = fx_timeline.new_peak_f(new_peak_l)
 
         client.sendto(bytes(frame_format(send_payload)), (target_ip, target_udp_port))
         client.sendto(bytes(frame_format(send_payload)), (target_ip, target_udp_port))

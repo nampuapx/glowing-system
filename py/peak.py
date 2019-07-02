@@ -11,7 +11,9 @@ class Peak:
         self.blue = self.byte_normalise(b)
         self.rgb = self.byte_normalise(rgb)
 
-    def byte_normalise(self, byte):
+
+    @staticmethod
+    def byte_normalise(byte):
 
         if byte < 0:
             return 0
