@@ -1,6 +1,8 @@
+
 import peak
 
-class fx_timeline_c():
+
+class FxTimeline:
     direction = None
     payload_pix = []
     zigzag = None

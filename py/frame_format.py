@@ -12,6 +12,7 @@ def crc16_ccitt(crc, data):
         lsb = (x ^ (x << 5)) & 0xff
     return (msb << 8) + lsb
 
+
 def int16_2_bytes(intt):
     return [(intt >> i & 0xff) for i in (0, 8)]
 

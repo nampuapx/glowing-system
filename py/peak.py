@@ -11,7 +11,6 @@ class Peak:
         self.blue = self.byte_normalise(b)
         self.rgb = self.byte_normalise(rgb)
 
-
     @staticmethod
     def byte_normalise(byte):
 
