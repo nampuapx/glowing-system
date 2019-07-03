@@ -118,6 +118,7 @@ print("Serving OSC feed back on {}".format([LOCALHOST_IP, LOCALHOST_OSC_PORT_FEE
 print("target_device_addr       {}".format([TARGET_IP, TARGET_UDP_PORT]))
 
 client = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+client.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
 
 iterator256 = AliveIterator(256)
 
