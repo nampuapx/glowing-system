@@ -1,7 +1,7 @@
-#N canvas 865 259 937 570 10;
+#N canvas 810 71 937 738 10;
 #X obj 65 159 adc~;
 #X obj 618 482 udpsend;
-#X msg 602 101 disconnect;
+#X msg 598 106 disconnect;
 #X obj 257 471 print;
 #X obj 619 455 packOSC;
 #X floatatom 100 100 5 10 100 0 - - -, f 5;
@@ -35,7 +35,7 @@
 #X floatatom 352 220 5 0 0 0 - - -, f 5;
 #X obj 315 269 hip~, f 8;
 #X obj 371 269 hip~, f 7;
-#X msg 522 77 connect 127.0.0.1 56567;
+#X msg 517 86 connect 127.0.0.1 56567;
 #X obj 103 19 loadbang;
 #X msg 180 146 300;
 #X msg 453 283 send /settings/dc_sub \$1;
@@ -69,7 +69,7 @@
 #X msg 762 232 bang;
 #X obj 670 483 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 81 470 pack i i i i i i i i;
+#X obj 78 446 pack i i i i i i i i;
 #N canvas 1006 697 336 327 eee 0;
 #X obj 65 11 inlet;
 #X obj 34 223 outlet;
@@ -203,7 +203,17 @@
 #X connect 7 0 3 0;
 #X connect 8 0 4 0;
 #X restore 352 327 pd eee;
-#X msg 518 131 send /peak \$1 \$2 \$3 \$4 \$5 \$6 \$7 \$8;
+#X msg 503 158 send /peak \$1 \$2 \$3 \$4 \$5 \$6 \$7 \$8;
+#X obj 418 618 udpsend;
+#X obj 430 581 packOSC;
+#X msg 413 541 connect 192.168.1.255 56567;
+#X msg 409 499 disconnect;
+#X floatatom 145 550 5 0 100 0 - - -, f 5;
+#X obj 150 580 / 100;
+#X msg 148 609 send /eeg/meditation01 \$1;
+#X floatatom 77 593 5 0 100 0 - - -, f 5;
+#X obj 81 628 / 100;
+#X msg 79 657 send /eeg/meditation02 \$1;
 #X connect 0 0 6 0;
 #X connect 0 0 7 0;
 #X connect 0 0 9 0;
@@ -292,3 +302,12 @@
 #X connect 55 0 48 7;
 #X connect 56 0 3 0;
 #X connect 56 0 4 0;
+#X connect 58 0 57 0;
+#X connect 59 0 57 0;
+#X connect 60 0 57 0;
+#X connect 61 0 62 0;
+#X connect 62 0 63 0;
+#X connect 63 0 58 0;
+#X connect 64 0 65 0;
+#X connect 65 0 66 0;
+#X connect 66 0 58 0;
